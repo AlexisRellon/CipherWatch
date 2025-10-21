@@ -2,7 +2,7 @@
 
 > **Fraud Detection CLI SaaS for Bank Transactions**
 
-![CipherWatch Logo](resources/icon/logo-white.png)
+![CipherWatch Logo](/resources/icon/Logo-white.png)
 
 ---
 
