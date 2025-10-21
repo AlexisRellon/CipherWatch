@@ -1,0 +1,41 @@
+# Large Files
+/Backend/model/*.pkl
+/Backend/model/*.joblib
+*.csv
+resources/docs/*
+
+# Python virtual environments
+venv/
+.venv/
+
+# Python cache and build
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment and config
+.env
+.env.*
+.DS_Store
+
+# Web build and cache
+node_modules/
+*.log
+
+# Local logs and temp
+*.log
+*.tmp
+*.bak
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
