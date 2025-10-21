@@ -88,6 +88,13 @@ const cliUI = document.getElementById('cli-ui');
 const cliContent = document.getElementById('cli-content');
 let globalModelDetails = null;
 
+// ========================================
+// API Base URL Logic
+// ========================================
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000'
+  : 'https://cipherwatch.onrender.com';
+
 // Fade-in background, then boot sequence, then zoom-in CRT
 async function startBootSequence() {
 
@@ -129,7 +136,7 @@ async function startBootSequence() {
     if (dotSpan) dotSpan.textContent = dotStr;
   }, 400);
   try {
-    const res = await fetch('http://localhost:5000/model-details', { method: 'GET' });
+    const res = await fetch(`${API_BASE_URL}/model-details`, { method: 'GET' });
     if (res.ok) {
       const data = await res.json();
       globalModelDetails = data.data || null;
@@ -369,7 +376,7 @@ async function handleAnalyzeTransaction(e) {
 
   // Actual API call
   try {
-    const res = await fetch('http://localhost:5000/predict', {
+    const res = await fetch(`${API_BASE_URL}/predict`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
