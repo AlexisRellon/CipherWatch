@@ -1,7 +1,31 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+
 import joblib
 import os
+
+# Download model from Google Drive if not present
+def download_model_if_needed():
+    import subprocess
+    model_path = os.path.join(os.path.dirname(__file__), 'model', 'random_forest_model_modified.pkl')
+    if not os.path.exists(model_path):
+        print('Model file not found. Downloading from Google Drive...')
+        # Google Drive file ID
+        file_id = '1Tya9VS3_h0gSXpXm6vpo5sFdx6_s5_Ok'
+        url = f'https://drive.google.com/uc?id={file_id}'
+        try:
+            subprocess.check_call([
+                'python', '-m', 'pip', 'install', 'gdown'
+            ])
+            import gdown
+            os.makedirs(os.path.dirname(model_path), exist_ok=True)
+            gdown.download(url, model_path, quiet=False)
+            print('Model downloaded successfully.')
+        except Exception as e:
+            print(f'Error downloading model: {e}')
+            raise
+
+download_model_if_needed()
 
 app = Flask(__name__)
 CORS(app)
